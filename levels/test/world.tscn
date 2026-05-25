@@ -29,10 +29,11 @@ sky = SubResource("Sky_j4ygj")
 [node name="World" type="Node3D" unique_id=788327480]
 
 [node name="Player" parent="." unique_id=1454403021 instance=ExtResource("1_uoold")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.098171, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8511763, 2.4542656, -4.5356812)
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=1558933915]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 15.490782, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=586741755]
 shape = SubResource("WorldBoundaryShape3D_uoold")
@@ -52,7 +53,7 @@ light_energy = 0.178
 shadow_enabled = true
 
 [node name="Cube" parent="." unique_id=956194366 instance=ExtResource("2_j4ygj")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.5390434, 16.508484, 0.6187391)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.5390434, 1.7843475, -17.718853)
 script = ExtResource("3_28abp")
 
 [node name="SkillUI" parent="." unique_id=1475342907 instance=ExtResource("3_skill")]
@@ -62,7 +63,6 @@ script = ExtResource("3_28abp")
 [node name="InventoryUI" parent="." unique_id=1843865324 instance=ExtResource("4_inventory")]
 
 [node name="TestNpc" parent="." unique_id=161698593 instance=ExtResource("6_jh4j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.960293, 5.532897)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0131598, 1.7653508, -17.706865)
 
 [node name="Platform" parent="." unique_id=605153976 instance=ExtResource("5_52uq4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.839489, 15.990782, -55.660255)

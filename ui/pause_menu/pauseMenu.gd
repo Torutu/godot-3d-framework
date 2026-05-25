@@ -9,12 +9,6 @@ extends Control
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-	print("PauseMenu: Resume button = ", _resumeBtn)
-	print("PauseMenu: Save button = ", _saveBtn)
-	print("PauseMenu: Settings button = ", _settingsBtn)
-	print("PauseMenu: Quit button = ", _quitBtn)
-	print("PauseMenu: Test button = ", _testBtn)
-
 	_resumeBtn.pressed.connect(_onResume)
 	_saveBtn.pressed.connect(_onSave)
 	_settingsBtn.pressed.connect(_onSettings)
@@ -29,14 +23,13 @@ func _onResume() -> void:
 	queue_free()
 
 func _onSave() -> void:
-	print("Save game (not implemented)")
+	DebugManager.log("Save game (not implemented)")
 
 func _onSettings() -> void:
-	print("Settings (not implemented)")
+	DebugManager.log("Settings (not implemented)")
 
 func _onQuit() -> void:
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://core/main_menu/mainMenu.tscn")
-	
+	PauseManager.quit_to_main_menu()
+
 func _onTest() -> void:
-	print("TEST BUTTON")
+	DebugManager.log("TEST BUTTON")

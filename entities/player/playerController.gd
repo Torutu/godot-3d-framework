@@ -12,6 +12,7 @@ var _pitch := 0.0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	PauseManager.enable_pausing()
 
 func _process(delta: float) -> void:
 	if _dialogue_session and _dialogue_session.is_in_dialogue:

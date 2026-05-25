@@ -4,7 +4,7 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jp0x4"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_npc"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_enb8w"]
 
 [node name="TestNpc" type="Node3D" unique_id=161698593]
 script = ExtResource("1_pk4ab")
@@ -16,4 +16,5 @@ mesh = SubResource("CapsuleMesh_jp0x4")
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=312847621]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=498736512]
-shape = SubResource("CapsuleShape3D_npc")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0016403198, 0)
+shape = SubResource("CapsuleShape3D_enb8w")
