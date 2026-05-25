@@ -1,30 +1,28 @@
 extends Control
 
-@onready var _slots: Array[PanelContainer] = [
-	$SkillPanel/HBoxContainer/Slot1,
-	$SkillPanel/HBoxContainer/Slot2,
-	$SkillPanel/HBoxContainer/Slot3,
-	$SkillPanel/HBoxContainer/Slot4,
-	$SkillPanel/HBoxContainer/Slot5
+@onready var _name_labels: Array[Label] = [
+	$SkillPanel/HBoxContainer/Slot1/Layout/SkillName,
+	$SkillPanel/HBoxContainer/Slot2/Layout/SkillName,
+	$SkillPanel/HBoxContainer/Slot3/Layout/SkillName,
+	$SkillPanel/HBoxContainer/Slot4/Layout/SkillName,
+	$SkillPanel/HBoxContainer/Slot5/Layout/SkillName,
 ]
 
-@onready var _labels: Array[RichTextLabel] = [
-	$SkillPanel/HBoxContainer/Slot1/Label,
-	$SkillPanel/HBoxContainer/Slot2/Label,
-	$SkillPanel/HBoxContainer/Slot3/Label,
-	$SkillPanel/HBoxContainer/Slot4/Label,
-	$SkillPanel/HBoxContainer/Slot5/Label
-]
+var _handler: ClassHandler
 
 func _ready() -> void:
-	print("Skill system loaded with %d slots" % _slots.size())
-
-func setSkillName(slotIndex: int, name: String) -> void:
-	if slotIndex < 0 or slotIndex >= _labels.size():
+	_handler = get_parent().get_node_or_null("ClassHandler") as ClassHandler
+	if not _handler:
 		return
-	_labels[slotIndex].text = name
+	_handler.class_loaded.connect(_on_class_loaded)
+	_handler.slot_changed.connect(_refresh_slot)
 
-func getSkillName(slotIndex: int) -> String:
-	if slotIndex < 0 or slotIndex >= _labels.size():
-		return ""
-	return _labels[slotIndex].text
+func _on_class_loaded() -> void:
+	for i in _name_labels.size():
+		_refresh_slot(i)
+
+func _refresh_slot(slot_index: int) -> void:
+	if slot_index < 0 or slot_index >= _name_labels.size():
+		return
+	var skill := _handler.get_skill(slot_index)
+	_name_labels[slot_index].text = skill.display_name if skill else ""

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dmw86mtgsfo1x" path="res://ui/skill/skillUI.gd" id="1_symyc"]
 
-[node name="SkillUI" type="Control" unique_id=1269850321]
+[node name="SkillUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,73 +12,199 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_symyc")
 
-[node name="SkillPanel" type="PanelContainer" parent="." unique_id=1739825407]
+[node name="SkillPanel" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -256.0
-offset_top = -88.0
-offset_right = 256.0
+offset_left = -225.0
+offset_top = -68.0
+offset_right = 225.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SkillPanel" unique_id=2129689048]
+[node name="HBoxContainer" type="HBoxContainer" parent="SkillPanel"]
 layout_mode = 2
+theme_override_constants/separation = 4
 
-[node name="Slot1" type="PanelContainer" parent="SkillPanel/HBoxContainer" unique_id=1077373527]
+[node name="Slot1" type="PanelContainer" parent="SkillPanel/HBoxContainer"]
+custom_minimum_size = Vector2(82, 52)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="RichTextLabel" parent="SkillPanel/HBoxContainer/Slot1" unique_id=814081311]
+[node name="Layout" type="Control" parent="SkillPanel/HBoxContainer/Slot1"]
 layout_mode = 2
+
+[node name="Number" type="Label" parent="SkillPanel/HBoxContainer/Slot1/Layout"]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 13.0
 text = "1"
-horizontal_alignment = 1
-vertical_alignment = 2
+theme_override_font_sizes/font_size = 9
 
-[node name="Slot2" type="PanelContainer" parent="SkillPanel/HBoxContainer" unique_id=1908956960]
-custom_minimum_size = Vector2(50, 50)
+[node name="SkillName" type="Label" parent="SkillPanel/HBoxContainer/Slot1/Layout"]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -20.0
+offset_right = -2.0
+offset_bottom = -3.0
+text = ""
+horizontal_alignment = 1
+clip_text = true
+theme_override_font_sizes/font_size = 11
+
+[node name="Slot2" type="PanelContainer" parent="SkillPanel/HBoxContainer"]
+custom_minimum_size = Vector2(82, 52)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="RichTextLabel" parent="SkillPanel/HBoxContainer/Slot2" unique_id=325918322]
+[node name="Layout" type="Control" parent="SkillPanel/HBoxContainer/Slot2"]
 layout_mode = 2
+
+[node name="Number" type="Label" parent="SkillPanel/HBoxContainer/Slot2/Layout"]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 13.0
 text = "2"
-horizontal_alignment = 1
-vertical_alignment = 2
+theme_override_font_sizes/font_size = 9
 
-[node name="Slot3" type="PanelContainer" parent="SkillPanel/HBoxContainer" unique_id=2128660271]
-custom_minimum_size = Vector2(50, 50)
+[node name="SkillName" type="Label" parent="SkillPanel/HBoxContainer/Slot2/Layout"]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -20.0
+offset_right = -2.0
+offset_bottom = -3.0
+text = ""
+horizontal_alignment = 1
+clip_text = true
+theme_override_font_sizes/font_size = 11
+
+[node name="Slot3" type="PanelContainer" parent="SkillPanel/HBoxContainer"]
+custom_minimum_size = Vector2(82, 52)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="RichTextLabel" parent="SkillPanel/HBoxContainer/Slot3" unique_id=1227612134]
+[node name="Layout" type="Control" parent="SkillPanel/HBoxContainer/Slot3"]
 layout_mode = 2
+
+[node name="Number" type="Label" parent="SkillPanel/HBoxContainer/Slot3/Layout"]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 13.0
 text = "3"
-horizontal_alignment = 1
-vertical_alignment = 2
+theme_override_font_sizes/font_size = 9
 
-[node name="Slot4" type="PanelContainer" parent="SkillPanel/HBoxContainer" unique_id=1651425722]
-custom_minimum_size = Vector2(50, 50)
+[node name="SkillName" type="Label" parent="SkillPanel/HBoxContainer/Slot3/Layout"]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -20.0
+offset_right = -2.0
+offset_bottom = -3.0
+text = ""
+horizontal_alignment = 1
+clip_text = true
+theme_override_font_sizes/font_size = 11
+
+[node name="Slot4" type="PanelContainer" parent="SkillPanel/HBoxContainer"]
+custom_minimum_size = Vector2(82, 52)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="RichTextLabel" parent="SkillPanel/HBoxContainer/Slot4" unique_id=1137667201]
+[node name="Layout" type="Control" parent="SkillPanel/HBoxContainer/Slot4"]
 layout_mode = 2
+
+[node name="Number" type="Label" parent="SkillPanel/HBoxContainer/Slot4/Layout"]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 13.0
 text = "4"
-horizontal_alignment = 1
-vertical_alignment = 2
+theme_override_font_sizes/font_size = 9
 
-[node name="Slot5" type="PanelContainer" parent="SkillPanel/HBoxContainer" unique_id=1988911987]
-custom_minimum_size = Vector2(50, 50)
+[node name="SkillName" type="Label" parent="SkillPanel/HBoxContainer/Slot4/Layout"]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -20.0
+offset_right = -2.0
+offset_bottom = -3.0
+text = ""
+horizontal_alignment = 1
+clip_text = true
+theme_override_font_sizes/font_size = 11
+
+[node name="Slot5" type="PanelContainer" parent="SkillPanel/HBoxContainer"]
+custom_minimum_size = Vector2(82, 52)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="RichTextLabel" parent="SkillPanel/HBoxContainer/Slot5" unique_id=548118539]
+[node name="Layout" type="Control" parent="SkillPanel/HBoxContainer/Slot5"]
 layout_mode = 2
+
+[node name="Number" type="Label" parent="SkillPanel/HBoxContainer/Slot5/Layout"]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 13.0
 text = "5"
+theme_override_font_sizes/font_size = 9
+
+[node name="SkillName" type="Label" parent="SkillPanel/HBoxContainer/Slot5/Layout"]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -20.0
+offset_right = -2.0
+offset_bottom = -3.0
+text = ""
 horizontal_alignment = 1
-vertical_alignment = 2
+clip_text = true
+theme_override_font_sizes/font_size = 11

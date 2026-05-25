@@ -65,6 +65,7 @@ Registered in `project.godot` in load order:
 | UI | [07-ui.md](07-ui.md) |
 | Entities | [08-entities.md](08-entities.md) |
 | Levels | [09-levels.md](09-levels.md) |
+| Classes | [10-classes.md](10-classes.md) |
 
 ---
 

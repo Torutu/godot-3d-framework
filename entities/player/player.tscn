@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bgdfx2cb0dcu5" path="res://ui/skill/skillUI.tscn" id="3_sglur"]
 [ext_resource type="PackedScene" uid="uid://fg28dh614fkf" path="res://ui/inventory/inventoryUI.tscn" id="4_bls4j"]
 [ext_resource type="Script" uid="uid://bpduvyklxx28v" path="res://core/dialogue/dialogueSession.gd" id="5_diag"]
+[ext_resource type="Script" uid="uid://jduillm5sko7" path="res://core/classes/classHandler.gd" id="6_class"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 
@@ -40,3 +41,7 @@ mesh = SubResource("CapsuleMesh_abrql")
 
 [node name="DialogueSession" type="Node" parent="CharacterBody3D" unique_id=623947182]
 script = ExtResource("5_diag")
+
+[node name="ClassHandler" type="Node" parent="CharacterBody3D" unique_id=837461920]
+script = ExtResource("6_class")
+class_path = "uid://cogg1m8b1inhw"
