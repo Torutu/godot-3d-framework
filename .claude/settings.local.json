@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"d:\\\\Godot Projects\\\\attack-on-goblins\\\\ui\\\\inventory\\\\\\\\\")",
+      "Bash(Get-ChildItem -Path \"d:\\\\Godot Projects\\\\attack-on-goblins\" -Recurse -Name)"
+    ]
+  }
+}

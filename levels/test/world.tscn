@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://csqbjbvnfired"]
+
+[ext_resource type="PackedScene" uid="uid://b7tlow0f7hqbk" path="res://entities/player/player.tscn" id="1_uoold"]
+[ext_resource type="PackedScene" uid="uid://cl38bqa52ds0c" path="res://entities/placeholders/cube.tscn" id="2_j4ygj"]
+[ext_resource type="Script" uid="uid://lt6bl2vsafqm" path="res://entities/shared/interactable.gd" id="3_28abp"]
+[ext_resource type="PackedScene" uid="uid://bgdfx2cb0dcu5" path="res://ui/skill/skillUI.tscn" id="3_skill"]
+[ext_resource type="PackedScene" uid="uid://fg28dh614fkf" path="res://ui/inventory/inventoryUI.tscn" id="4_inventory"]
+[ext_resource type="PackedScene" uid="uid://b4pbimfkukwp1" path="res://entities/placeholders/platform.tscn" id="5_52uq4"]
+[ext_resource type="PackedScene" uid="uid://cw5xxw7p55qsh" path="res://ui/dialogue/dialogueUI.tscn" id="5_v3mvp"]
+[ext_resource type="PackedScene" uid="uid://byhl3hlfxfqti" path="res://entities/npcs/testNpc/testNpc.tscn" id="6_jh4j4"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_uoold"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uoold"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uoold"]
+
+[sub_resource type="Sky" id="Sky_j4ygj"]
+sky_material = SubResource("ProceduralSkyMaterial_uoold")
+
+[sub_resource type="Environment" id="Environment_nr3k4"]
+background_mode = 2
+sky = SubResource("Sky_j4ygj")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_j4ygj"]
+
+[sub_resource type="Compositor" id="Compositor_nr3k4"]
+
+[node name="World" type="Node3D" unique_id=788327480]
+
+[node name="Player" parent="." unique_id=1454403021 instance=ExtResource("1_uoold")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.098171, 0)
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1558933915]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 15.490782, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=586741755]
+shape = SubResource("WorldBoundaryShape3D_uoold")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/CollisionShape3D" unique_id=1506079600]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_uoold")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1602210486]
+environment = SubResource("Environment_nr3k4")
+camera_attributes = SubResource("CameraAttributesPractical_j4ygj")
+compositor = SubResource("Compositor_nr3k4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1816076975]
+transform = Transform3D(0.054078843, 0.9622203, -0.26684728, 0, 0.26723835, 0.96363044, 0.99853665, -0.05211202, 0.014451941, 77.291626, 104.8006, 93.65241)
+light_energy = 0.178
+shadow_enabled = true
+
+[node name="Cube" parent="." unique_id=956194366 instance=ExtResource("2_j4ygj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.5390434, 16.508484, 0.6187391)
+script = ExtResource("3_28abp")
+
+[node name="SkillUI" parent="." unique_id=1475342907 instance=ExtResource("3_skill")]
+
+[node name="DialogueUI" parent="." unique_id=2092347221 instance=ExtResource("5_v3mvp")]
+
+[node name="InventoryUI" parent="." unique_id=1843865324 instance=ExtResource("4_inventory")]
+
+[node name="TestNpc" parent="." unique_id=161698593 instance=ExtResource("6_jh4j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.960293, 5.532897)
+
+[node name="Platform" parent="." unique_id=605153976 instance=ExtResource("5_52uq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.839489, 15.990782, -55.660255)

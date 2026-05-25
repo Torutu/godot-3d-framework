@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://fg28dh614fkf"]
+
+[ext_resource type="Script" uid="uid://byocic7i83m8p" path="res://ui/inventory/inventoryUI.gd" id="1_symyc"]
+
+[node name="InventoryUI" type="Control" unique_id=1172853916]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_symyc")
+
+[node name="InventoryPanel" type="PanelContainer" parent="." unique_id=1694255871]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -230.0
+offset_top = -230.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="InventoryPanel" unique_id=1227055215]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="Slot1" type="PanelContainer" parent="InventoryPanel/GridContainer" unique_id=1265825045]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="InventoryPanel/GridContainer/Slot1" unique_id=470729845]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Slot2" type="PanelContainer" parent="InventoryPanel/GridContainer" unique_id=2132100627]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="InventoryPanel/GridContainer/Slot2" unique_id=1521120868]
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Slot3" type="PanelContainer" parent="InventoryPanel/GridContainer" unique_id=2106206092]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="InventoryPanel/GridContainer/Slot3" unique_id=923791017]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Slot4" type="PanelContainer" parent="InventoryPanel/GridContainer" unique_id=1821885909]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="InventoryPanel/GridContainer/Slot4" unique_id=1140996625]
+layout_mode = 2
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Slot5" type="PanelContainer" parent="InventoryPanel/GridContainer" unique_id=1355448365]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="InventoryPanel/GridContainer/Slot5" unique_id=928950062]
+layout_mode = 2
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Slot6" type="PanelContainer" parent="InventoryPanel/GridContainer" unique_id=498348499]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="InventoryPanel/GridContainer/Slot6" unique_id=1321511636]
+layout_mode = 2
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Slot7" type="PanelContainer" parent="InventoryPanel/GridContainer" unique_id=1884165687]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="InventoryPanel/GridContainer/Slot7" unique_id=1191547055]
+layout_mode = 2
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Slot8" type="PanelContainer" parent="InventoryPanel/GridContainer" unique_id=721252554]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="InventoryPanel/GridContainer/Slot8" unique_id=913945043]
+layout_mode = 2
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Slot9" type="PanelContainer" parent="InventoryPanel/GridContainer" unique_id=1813987532]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="InventoryPanel/GridContainer/Slot9" unique_id=2034927905]
+layout_mode = 2
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 2
