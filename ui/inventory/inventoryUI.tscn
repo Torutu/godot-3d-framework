@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://byocic7i83m8p" path="res://ui/inventory/inventoryUI.gd" id="1_symyc"]
 
+[sub_resource type="Theme" id="Theme_qg4qb"]
+
 [node name="InventoryUI" type="Control" unique_id=1172853916]
 layout_mode = 3
 anchors_preset = 15
@@ -35,6 +37,7 @@ columns = 3
 [node name="Slot1" type="PanelContainer" parent="InventoryPanel/GridContainer" unique_id=1265825045]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = SubResource("Theme_qg4qb")
 
 [node name="Label" type="RichTextLabel" parent="InventoryPanel/GridContainer/Slot1" unique_id=470729845]
 layout_mode = 2

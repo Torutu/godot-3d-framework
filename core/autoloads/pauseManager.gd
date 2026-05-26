@@ -1,5 +1,8 @@
 extends Node
 
+signal game_paused
+signal game_resumed
+
 const PAUSE_MENU_SCENE = "res://ui/pause_menu/pause_menu.tscn"
 
 var _pauseMenuInstance: Control = null
@@ -29,6 +32,7 @@ func _showPauseMenu() -> void:
 	get_tree().root.add_child(_pauseMenuInstance)
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	game_paused.emit()
 
 func _resumeGame() -> void:
 	if _pauseMenuInstance:
@@ -36,6 +40,7 @@ func _resumeGame() -> void:
 		_pauseMenuInstance = null
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	game_resumed.emit()
 
 func quit_to_main_menu() -> void:
 	if _pauseMenuInstance:

@@ -1,13 +1,6 @@
 [gd_scene format=3 uid="uid://byhl3hlfxfqti"]
 
 [ext_resource type="Script" uid="uid://lt6bl2vsafqm" path="res://entities/shared/interactable.gd" id="1_pk4ab"]
-[ext_resource type="Script" uid="uid://duc5vl8pqagbm" path="res://assets/dialogue/testNpc/testNpc.gd" id="2_fnioh"]
-[ext_resource type="Script" uid="uid://diqo0v3e423l4" path="res://core/dialogue/dialogueResource.gd" id="3_t04nt"]
-
-[sub_resource type="Resource" id="Resource_kfjyt"]
-script = ExtResource("3_t04nt")
-dialogue_script = ExtResource("2_fnioh")
-metadata/_custom_type_script = "uid://diqo0v3e423l4"
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jp0x4"]
 
@@ -15,7 +8,6 @@ metadata/_custom_type_script = "uid://diqo0v3e423l4"
 
 [node name="TestNpc" type="Node3D" unique_id=161698593]
 script = ExtResource("1_pk4ab")
-dialogue_resource = SubResource("Resource_kfjyt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=836048350]
 mesh = SubResource("CapsuleMesh_jp0x4")

@@ -87,6 +87,17 @@ These must exist before scripting any game logic that depends on them.
 - **Use signals over polling**: don't check a condition every frame if a signal can fire once
 - **Debug code must use `DebugManager.log()`** — never bare `print()` calls in committed code
 
+### Physics Sync (mandatory — prevents jitter)
+Physics interpolation is enabled project-wide (`physics/common/physics_interpolation=true`). Every node that moves with or is driven by a physics body **must** update at the physics rate, not the render rate. Violating this causes visual jitter and desync.
+
+- **`move_and_slide()` belongs in `_physics_process()`** — never `_process()`
+- **`apply_force` / `apply_impulse` belong in `_physics_process()`** — never `_process()`
+- **AnimationPlayer and AnimationTree driving physics-attached nodes must use `ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS`** — set in `_ready()` via code, not in the Inspector or .tscn (Godot strips those values on save)
+- **Any script that sets `position`, `rotation`, or `transform` on a node attached to a physics body must do so in `_physics_process()`**
+- **Jump / one-shot inputs detected in `_input()`** must be buffered via a flag and consumed in `_physics_process()` to avoid missed frames
+- **Mouse look**: pitch (camera X) can be applied immediately in `_input()` as it is local and visual only. Yaw (body Y rotation via `rotate_y`) must be accumulated into a float in `_input()` and applied in `_physics_process()`, then cleared — otherwise the body transform changes outside physics snapshots and causes jitter
+- **Physics tick rate is 120Hz** (`common/physics_ticks_per_second=120`) — do not lower it; smaller steps = smoother contact resolution
+
 ### Modularity & Extractability
 Every system must be independently extractable into a reusable library. This means:
 

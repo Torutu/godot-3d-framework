@@ -15,6 +15,7 @@ var _conv_line: int = 0
 var _active_npc: Node3D
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	_body = get_parent() as CharacterBody3D
 	if not raycast and _body:
 		raycast = _body.get_node_or_null("Camera3D/InteractionRay") as RayCast3D
@@ -24,8 +25,12 @@ func _ready() -> void:
 	_ui.option_confirmed.connect(select_option)
 	_ui.hide()
 	get_tree().root.add_child(_ui)
+	PauseManager.game_paused.connect(_on_paused)
+	PauseManager.game_resumed.connect(_on_resumed)
 
 func _process(_delta: float) -> void:
+	if get_tree().paused:
+		return
 	if is_in_dialogue and _ui and _ui.visible and _active_npc:
 		var ray_length := (raycast.target_position.length() if raycast else 3.0) + 1.0
 		if _body and _body.global_position.distance_to(_active_npc.global_position) > ray_length:
@@ -34,6 +39,8 @@ func _process(_delta: float) -> void:
 	_update_prompt()
 
 func _input(event: InputEvent) -> void:
+	if get_tree().paused:
+		return
 	var interact := "p%d_interact" % player_index
 
 	if not is_in_dialogue:
@@ -186,3 +193,16 @@ func close_dialogue() -> void:
 	is_in_dialogue = false
 	_active_npc = null
 	DialogueManager.dialogue_ended.emit(player_index)
+
+func _on_paused() -> void:
+	if is_in_dialogue and _ui:
+		_ui.hide()
+
+func _on_resumed() -> void:
+	if not is_in_dialogue:
+		return
+	var ray_length := (raycast.target_position.length() if raycast else 3.0) + 1.0
+	if _body and _active_npc and _body.global_position.distance_to(_active_npc.global_position) > ray_length:
+		close_dialogue()
+	else:
+		_ui.show()

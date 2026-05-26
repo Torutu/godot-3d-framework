@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dyakw3q6aqpht"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_v6x5h"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e31c1"]
+
+[node name="Node3D" type="Node3D" unique_id=1012535144]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=644775167]
+can_sleep = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1081093273]
+mesh = SubResource("SphereMesh_v6x5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1831525011]
+shape = SubResource("SphereShape3D_e31c1")
+debug_color = Color(0, 0.5950001, 0.7, 0.45882353)

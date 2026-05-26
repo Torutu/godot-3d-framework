@@ -5,7 +5,66 @@
 [ext_resource type="PackedScene" uid="uid://bgdfx2cb0dcu5" path="res://ui/skill/skillUI.tscn" id="3_sglur"]
 [ext_resource type="PackedScene" uid="uid://fg28dh614fkf" path="res://ui/inventory/inventoryUI.tscn" id="4_bls4j"]
 [ext_resource type="Script" uid="uid://bpduvyklxx28v" path="res://core/dialogue/dialogueSession.gd" id="5_diag"]
+[ext_resource type="PackedScene" uid="uid://cw5xxw7p55qsh" path="res://ui/dialogue/dialogueUI.tscn" id="5_qiwj3"]
 [ext_resource type="Script" uid="uid://jduillm5sko7" path="res://core/classes/classHandler.gd" id="6_class"]
+[ext_resource type="PackedScene" uid="uid://6myy8xnvbvhh" path="res://entities/loot/meleeWpnTest.tscn" id="8_26q78"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bectd"]
+animation = &"Swing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26q78"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_26q78"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bectd"]
+graph_offset = Vector2(-564.2585, -66.96579)
+nodes/output/position = Vector2(540, 200)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_26q78")
+nodes/Idle/position = Vector2(-220, 0)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_26q78")
+nodes/OneShot/position = Vector2(120, 120)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_bectd")
+nodes/Animation/position = Vector2(-280, 280)
+node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Idle", &"OneShot", 1, &"Animation"]
+
+[sub_resource type="Animation" id="Animation_26q78"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MeleeWepTest")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.4579888, 0.64315045, -0.4915357, 0.5, 1, -0.458, 0.743, -0.492, 1, 1, -0.4579888, 0.64315045, -0.4915357)
+
+[sub_resource type="Animation" id="Animation_bectd"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MeleeWepTest")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.4579888, 0.64315045, -0.4915357)
+
+[sub_resource type="Animation" id="Animation_wvtmh"]
+resource_name = "Swing"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MeleeWepTest")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, -0.866025, 0, 0, 0.5, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wvtmh"]
+_data = {
+&"Idle": SubResource("Animation_26q78"),
+&"RESET": SubResource("Animation_bectd"),
+&"Swing": SubResource("Animation_wvtmh")
+}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 
@@ -20,20 +79,37 @@ material = SubResource("StandardMaterial3D_symyc")
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=804840572]
 script = ExtResource("1_symyc")
 
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody3D" unique_id=175991927]
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeBlendTree_bectd")
+anim_player = NodePath("MeleeWepTestAnim")
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+
+[node name="MeleeWepTestAnim" type="AnimationPlayer" parent="CharacterBody3D/AnimationTree" unique_id=662714762]
+libraries/ = SubResource("AnimationLibrary_wvtmh")
+
+[node name="MeleeWepTest" parent="CharacterBody3D" unique_id=312528229 instance=ExtResource("8_26q78")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.45799628, 0.70984644, -0.49184585)
+
 [node name="HUD" parent="CharacterBody3D" unique_id=217648578 instance=ExtResource("2_abrql")]
 
 [node name="SkillUI" parent="CharacterBody3D" unique_id=456142014 instance=ExtResource("3_sglur")]
 
 [node name="InventoryUI" parent="CharacterBody3D" unique_id=1172853916 instance=ExtResource("4_bls4j")]
 
+[node name="DialogueUI" parent="CharacterBody3D" unique_id=2092347221 instance=ExtResource("5_qiwj3")]
+
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=1131986465]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5068424, -0.2975733)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5068424, -0.048105866)
 
 [node name="InteractionRay" type="RayCast3D" parent="CharacterBody3D/Camera3D" unique_id=741028364]
 visible = false
 target_position = Vector3(0, 0, -3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=891526328]
+visible = false
 shape = SubResource("CapsuleShape3D_sfv1e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=259190640]

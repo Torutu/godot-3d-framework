@@ -6,6 +6,7 @@ const SLOT_COUNT: int = 5
 @export_file("*.gd") var class_path: String = ""
 
 signal skill_used(skill: SkillData)
+signal skill_activated(slot_index: int)
 signal attack_executed(attack: AttackData)
 signal class_loaded
 signal slot_changed(slot_index: int)
@@ -52,6 +53,7 @@ func use_skill(slot_index: int) -> void:
 	var skill := get_skill(slot_index)
 	if not skill:
 		return
+	skill_activated.emit(slot_index)
 	if _cooldowns.get(skill.skill_id, 0.0) > 0.0:
 		DebugManager.log("[ClassHandler] %s on cooldown: %.1fs" % [skill.display_name, _cooldowns[skill.skill_id]])
 		return

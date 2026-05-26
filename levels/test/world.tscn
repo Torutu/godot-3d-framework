@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://b7tlow0f7hqbk" path="res://entities/player/player.tscn" id="1_uoold"]
 [ext_resource type="PackedScene" uid="uid://cl38bqa52ds0c" path="res://entities/placeholders/cube.tscn" id="2_j4ygj"]
 [ext_resource type="Script" uid="uid://lt6bl2vsafqm" path="res://entities/shared/interactable.gd" id="3_28abp"]
-[ext_resource type="PackedScene" uid="uid://bgdfx2cb0dcu5" path="res://ui/skill/skillUI.tscn" id="3_skill"]
-[ext_resource type="PackedScene" uid="uid://fg28dh614fkf" path="res://ui/inventory/inventoryUI.tscn" id="4_inventory"]
 [ext_resource type="PackedScene" uid="uid://b4pbimfkukwp1" path="res://entities/placeholders/platform.tscn" id="5_52uq4"]
-[ext_resource type="PackedScene" uid="uid://cw5xxw7p55qsh" path="res://ui/dialogue/dialogueUI.tscn" id="5_v3mvp"]
 [ext_resource type="PackedScene" uid="uid://byhl3hlfxfqti" path="res://entities/npcs/testNpc/testNpc.tscn" id="6_jh4j4"]
+[ext_resource type="Script" uid="uid://duc5vl8pqagbm" path="res://assets/dialogue/testNpc/testNpc.gd" id="8_1641h"]
+[ext_resource type="PackedScene" uid="uid://dyakw3q6aqpht" path="res://entities/placeholders/rigidBall.tscn" id="8_v3mvp"]
+[ext_resource type="Script" uid="uid://diqo0v3e423l4" path="res://core/dialogue/dialogueResource.gd" id="9_5srju"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_uoold"]
 
@@ -25,6 +25,11 @@ sky = SubResource("Sky_j4ygj")
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_j4ygj"]
 
 [sub_resource type="Compositor" id="Compositor_nr3k4"]
+
+[sub_resource type="Resource" id="Resource_4whiv"]
+script = ExtResource("9_5srju")
+dialogue_script = ExtResource("8_1641h")
+metadata/_custom_type_script = "uid://diqo0v3e423l4"
 
 [node name="World" type="Node3D" unique_id=788327480]
 
@@ -56,13 +61,14 @@ shadow_enabled = true
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.5390434, 1.7843475, -17.718853)
 script = ExtResource("3_28abp")
 
-[node name="SkillUI" parent="." unique_id=1475342907 instance=ExtResource("3_skill")]
-
-[node name="DialogueUI" parent="." unique_id=2092347221 instance=ExtResource("5_v3mvp")]
-
-[node name="InventoryUI" parent="." unique_id=1843865324 instance=ExtResource("4_inventory")]
-
 [node name="TestNpc" parent="." unique_id=161698593 instance=ExtResource("6_jh4j4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0131598, 1.7653508, -17.706865)
+dialogue_resource = SubResource("Resource_4whiv")
 
 [node name="Platform" parent="." unique_id=605153976 instance=ExtResource("5_52uq4")]
+
+[node name="Node3D" parent="." unique_id=1012535144 instance=ExtResource("8_v3mvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -8)
+
+[node name="Node3D2" parent="." unique_id=1605471263 instance=ExtResource("8_v3mvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, -13)
