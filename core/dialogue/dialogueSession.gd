@@ -10,7 +10,7 @@ var _body: CharacterBody3D
 var _ui: Control
 var _prompt: Control
 var _dialogue: DialogueResource
-var _conv: int = 0
+var _conv: StringName = &""
 var _conv_line: int = 0
 var _active_npc: Node3D
 
@@ -40,8 +40,9 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed(interact):
 		get_viewport().set_input_as_handled()
-		var conv = _dialogue.get_conversation(_conv) if _dialogue else null
-		if conv and not conv.options.is_empty():
+		var conv := _dialogue.get_conversation(_conv) if _dialogue else null
+		var is_last_line := _conv_line >= conv.lines.size() - 1 if conv else false
+		if conv and is_last_line and not conv.options.is_empty():
 			_ui.confirm()
 		else:
 			_try_advance()
@@ -69,8 +70,11 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		var num: int = event.keycode - KEY_1
 		if num >= 0 and num <= 8:
-			get_viewport().set_input_as_handled()
-			select_option(num)
+			var conv2 := _dialogue.get_conversation(_conv) if _dialogue else null
+			var on_last := _conv_line >= conv2.lines.size() - 1 if conv2 else false
+			if on_last:
+				get_viewport().set_input_as_handled()
+				select_option(num)
 
 func _update_prompt() -> void:
 	var nearest := _raycast_interactable()
@@ -113,13 +117,15 @@ func _interactable_in_parents(node: Node) -> Interactable:
 
 func start_dialogue(interactable: Interactable) -> void:
 	var dialogue := interactable.dialogue_resource
-	if not dialogue or dialogue.conversation_count() == 0:
+	if not dialogue or not dialogue.has_conversations():
 		return
 
 	_dialogue = dialogue
-	_conv = 0
 	_conv_line = 0
 	is_in_dialogue = true
+
+	var start := dialogue.get_start()
+	_conv = start.id if start else &""
 
 	var raw: Node = interactable
 	_active_npc = raw as Node3D
@@ -161,19 +167,22 @@ func _try_advance() -> void:
 
 func select_option(option_index: int) -> void:
 	var conv := _dialogue.get_conversation(_conv)
-	if not conv:
+	if not conv or option_index < 0 or option_index >= conv.options.size():
 		return
-	if option_index >= 0 and option_index < conv.options.size():
-		_conv = conv.options[option_index].goto_conv
+	var option: DialogueOption = conv.options[option_index]
+	if option.goto_id == &"":
+		close_dialogue()
+	else:
+		_conv = option.goto_id
 		_conv_line = 0
 		_show_line()
-		DialogueManager.option_selected.emit(player_index, option_index)
+	DialogueManager.option_selected.emit(player_index, option_index)
 
 func close_dialogue() -> void:
 	if _ui:
 		_ui.hide()
 	_dialogue = null
-	_conv = 0
+	_conv = &""
 	_conv_line = 0
 	is_in_dialogue = false
 	_active_npc = null

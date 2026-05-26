@@ -1,40 +1,30 @@
 extends Resource
 class_name DialogueResource
 
-class Conversation:
-	var lines: Array[String] = []
-	var options: Array = []
+@export var npc_name: String = "Speaker"
+@export var dialogue_script: Script
 
-class Option:
-	var text: String
-	var goto_conv: int
+var _conversations: Array[DialogueConversation] = []
+var _built: bool = false
 
-	func _init(p_text: String, p_goto: int) -> void:
-		text = p_text
-		goto_conv = p_goto
+func _build() -> void:
+	if _built or not dialogue_script:
+		return
+	var instance: DialogueScript = dialogue_script.new()
+	for conv in instance.get_conversations():
+		_conversations.append(conv as DialogueConversation)
+	_built = true
 
-var npc_name: String = "Speaker"
-var conversations: Array = []
+func get_start() -> DialogueConversation:
+	_build()
+	return _conversations[0] if not _conversations.is_empty() else null
 
-func _init() -> void:
-	resource_path = ""
-
-# Adds a sequence of lines as one conversation. Returns the conversation index.
-func add_conversation(lines: Array[String]) -> int:
-	var conv = Conversation.new()
-	conv.lines = lines
-	conversations.append(conv)
-	return conversations.size() - 1
-
-# Adds a choice button at the end of from_conv that jumps to to_conv.
-func add_option(from_conv: int, text: String, to_conv: int) -> void:
-	if from_conv >= 0 and from_conv < conversations.size():
-		conversations[from_conv].options.append(Option.new(text, to_conv))
-
-func get_conversation(index: int) -> Conversation:
-	if index >= 0 and index < conversations.size():
-		return conversations[index]
+func get_conversation(id: StringName) -> DialogueConversation:
+	_build()
+	for conv in _conversations:
+		if conv.id == id:
+			return conv
 	return null
 
-func conversation_count() -> int:
-	return conversations.size()
+func has_conversations() -> bool:
+	return dialogue_script != null
