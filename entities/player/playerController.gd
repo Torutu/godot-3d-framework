@@ -12,11 +12,13 @@ var jump_force: float = 12.0
 @onready var _class_handler: ClassHandler = $ClassHandler
 @onready var _inventory_ui: Control = $InventoryUI
 @onready var _anim_tree: AnimationTree = $AnimationTree
+@onready var _weapon: Node3D = $Camera3D/MeleeWepTest
 var _anim_player: AnimationPlayer
 var _pitch := 0.0
 var _jump_requested := false
 var _mouse_x := 0.0
 var _attack_held := false
+var _was_swinging := false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -52,7 +54,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_push_rigid_bodies(pre_slide_velocity)
 
-	if _attack_held and not _anim_tree.get("parameters/OneShot/active"):
+	var is_swinging: bool = _anim_tree.get("parameters/OneShot/active")
+	if is_swinging != _was_swinging:
+		if is_swinging:
+			_weapon.activate()
+		else:
+			_weapon.deactivate()
+		_was_swinging = is_swinging
+
+	if _attack_held and not is_swinging:
 		_fire_swing()
 
 func _push_rigid_bodies(intended_velocity: Vector3) -> void:
