@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Attack on goblins"
+config/name="Godot Framework"
 run/main_scene="res://core/main_menu/mainMenu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 

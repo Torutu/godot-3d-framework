@@ -20,10 +20,14 @@ func _ready() -> void:
 		raycast = _body.get_node_or_null("Camera3D/InteractionRay") as RayCast3D
 	if raycast and _body:
 		raycast.add_exception(_body)
+	_ui = load("res://ui/dialogue/dialogueUI.tscn").instantiate()
+	_ui.option_confirmed.connect(select_option)
+	_ui.hide()
+	get_tree().root.add_child(_ui)
 
 func _process(_delta: float) -> void:
 	if is_in_dialogue and _ui and _ui.visible and _active_npc:
-		var ray_length := raycast.target_position.length() if raycast else 3.0
+		var ray_length := (raycast.target_position.length() if raycast else 3.0) + 1.0
 		if _body and _body.global_position.distance_to(_active_npc.global_position) > ray_length:
 			close_dialogue()
 		return
@@ -129,11 +133,6 @@ func start_dialogue(interactable: Interactable) -> void:
 
 	var raw: Node = interactable
 	_active_npc = raw as Node3D
-
-	if not _ui:
-		_ui = load("res://ui/dialogue/dialogueUI.tscn").instantiate()
-		_ui.option_confirmed.connect(select_option)
-		get_tree().root.add_child(_ui)
 
 	if _prompt:
 		_prompt.hide()
